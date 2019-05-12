@@ -48,6 +48,24 @@ essentially jersy should load before swagger
 @Api(value="Employee Demo Service")
 public class EmployeeRestController {
 
+5> //step 5: add swagger annotation in your rest service method
+	@ApiResponse( code = 200, message = "Success JSON Employee List Fetched", 
+	        		response = Employee.class, responseContainer = "List" ) 
+	@GET
+    @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    public List<Employee> getEmployees_JSON() {
+        List<Employee> listOfCountries=null;
+		try {
+			listOfCountries = employeeService.getAllEmployees();
+		} catch (EmployeeException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        return listOfCountries;
+    }
+    
+6> visit the url and type /swagger.json
+
 
 
 

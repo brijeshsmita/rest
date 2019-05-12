@@ -12,12 +12,11 @@
 		<welcome-file>default.htm</welcome-file>
 		<welcome-file>default.jsp</welcome-file>
 	</welcome-file-list>
-
-	 <servlet>
+<servlet>
         <servlet-name>JerseyServlet</servlet-name>
-        <servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
+        <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
         <init-param>
-            <param-name>com.sun.jersey.config.property.packages</param-name>
+            <param-name>jersey.config.server.provider.packages</param-name>
             <param-value>com.smita.rest,io.swagger.jaxrs.listing</param-value>
             <!-- step 1 :io.swagger.jaxrs.listing actually swagger built-in api endpoints with jersy servlet -->
         </init-param>
