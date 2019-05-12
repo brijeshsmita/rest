@@ -1,0 +1,60 @@
+Swagger Steps
+
+1> update pom.xml with swagger dependencies
+<!-- Swagger dependencies -->
+		<dependency>
+			<groupId>io.swagger.core.v3</groupId>
+			<artifactId>swagger-jaxrs2</artifactId>
+			<version>2.0.0</version>
+		</dependency>
+		
+2> open web.xml 
+add swagger package (io.swagger.jaxrs.listing) in jersy servlet 
+
+<servlet>
+        <servlet-name>JerseyServlet</servlet-name>
+        <servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
+        <init-param>
+            <param-name>com.sun.jersey.config.property.packages</param-name>
+            <param-value>com.smita.rest,io.swagger.jaxrs.listing</param-value>
+            <!-- io.swagger.jaxrs.listing actually swagger built-in api endpoints with jersy servlet -->
+        </init-param>
+        <load-on-startup>1</load-on-startup> 
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>JerseyServlet</servlet-name>
+        <url-pattern>/rest/*</url-pattern>
+    </servlet-mapping>
+    
+3> Add Swagger servlet in web.xml
+
+ <servlet>
+        <servlet-name>Jersey2Config</servlet-name>
+        <servlet-class>io.swagger.jersey.config.JerseyJaxrsConfig</servlet-class>
+        <init-param>
+            <param-name>api.version</param-name>
+            <param-value>1.0.0</param-value>
+        </init-param>
+        <init-param>
+            <param-name>swagger.api.basepath</param-name>
+            <param-value>http://localhost:8080/rest</param-value>
+        </init-param>
+        <load-on-startup>2</load-on-startup>
+    </servlet>
+NOTE: jersy load-on-startup is 1 and swagger load-on-startup is 2
+essentially jersy should load before swagger
+
+4>//step 4: add swagger anotation in your rest service
+@Api(value="Employee Demo Service")
+public class EmployeeRestController {
+
+
+
+
+
+
+
+
+
+
+
