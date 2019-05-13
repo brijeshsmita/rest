@@ -35,12 +35,7 @@ public class EmployeeRestController {
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     public List<Employee> getEmployees_JSON() {
         List<Employee> listOfCountries=null;
-		try {
-			listOfCountries = employeeService.getAllEmployees();
-		} catch (EmployeeException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		listOfCountries = employeeService.getAllEmployees();
         return listOfCountries;
     }
  
@@ -51,12 +46,8 @@ public class EmployeeRestController {
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     public Employee getEmployee(@PathParam("empNo") String empNo) {
     	Employee employee=null;
-        try {
-        	employee= employeeService.getEmployee(empNo);
-		} catch (EmployeeException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+        //DO NOT HANDLE EXCEPTION
+    	employee= employeeService.getEmployee(empNo);
 		return employee;
     }
  

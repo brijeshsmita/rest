@@ -36,7 +36,11 @@ public class EmployeeDao implements IEmployeeDao {
 
 	@Override
 	public Employee getEmployee(String empNo) throws EmployeeException {
-		return empMap.get(empNo);
+		Employee emp = empMap.get(empNo);
+		if(emp==null) {
+			throw new EmployeeException("Employee not found!");
+		}
+		return emp;
 	}
 
 	@Override

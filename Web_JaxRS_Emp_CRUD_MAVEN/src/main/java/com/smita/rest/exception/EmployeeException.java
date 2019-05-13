@@ -7,11 +7,8 @@ package com.smita.rest.exception;
  * @author Smita B Kumar
  *
  */
-public class EmployeeException extends Exception {
+public class EmployeeException extends RuntimeException {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	public EmployeeException() {
