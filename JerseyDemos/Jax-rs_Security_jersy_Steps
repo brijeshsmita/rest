@@ -1,0 +1,50 @@
+Step to implements Jersy_JaxRs_Security
+
+1> create AuthenticationFilter class by implementing ContainerRequestFilter to filter pre and post request handling.
+@Provider
+@PreMatching
+public class AuthenticationFilter implements ContainerRequestFilter 
+
+this filter will verify the access permission for a user based on the username and password.
+@PermitAll, @DenyAll, @RoleAllowed
+
+AuthenticationServices -> BasicAuth -> MyApplicationSecurityContext -> User
+
+2> We need to register this AuthenticationFilter with the ResourceConfig instance 
+create CustomApplication class extends ResourceConfig
+
+public class CustomApplication extends ResourceConfig 
+{
+	public CustomApplication() 
+	{
+		packages("com.smita.jersey");
+		register(LoggingFilter.class);
+		register(RolesAllowedDynamicFeature.class);
+		register(AuthenticationFilter.class);
+	}
+}
+
+3> In web.xml add the above CustomApplication class in init-param of servlet tag
+
+<init-param>
+			<param-name>javax.ws.rs.Application</param-name>
+			<param-value>com.smita.jersey.CustomApplication</param-value>
+		</init-param>
+		
+4> Securing our Rest Api -> JersyService -> by using standard JAX-RS annotation
+
+@PermitAll, @DenyAll, @RoleAllowed
+
+
+
+
+
+
+
+
+
+
+
+
+
+
